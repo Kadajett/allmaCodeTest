@@ -9,6 +9,9 @@ import { getIncidents } from "../utils/services"
 import { ThemeProvider } from "@material-ui/core/styles"
 import { createMuiTheme } from "@material-ui/core/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
+import { CardContainer } from "../components/cardContainer"
+import Divider from "@material-ui/core/Divider"
+
 const theme = createMuiTheme({
   palette: {
     primary: { 500: "#467fcf" },
@@ -24,6 +27,8 @@ const IndexPage = ({
       <CssBaseline />
       <Layout>
         <SEO title="Home" />
+        <CardContainer incidents={incidents} />
+        <Divider />
         <IncidentList incidents={incidents} />
       </Layout>
     </ThemeProvider>
