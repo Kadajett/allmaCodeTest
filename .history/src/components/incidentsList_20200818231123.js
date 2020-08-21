@@ -1,0 +1,21 @@
+/**
+ * SEO component that queries for data with
+ *  Gatsby's useStaticQuery React hook
+ *
+ * See: https://www.gatsbyjs.org/docs/use-static-query/
+ */
+
+import React from "react"
+import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
+import List from "@material-ui/core/List"
+
+function IncidentList({ incidents }) {
+  return <>{incidents && <span>Incidents loaded</span>}</>
+}
+
+IncidentList.defaultProps = {}
+
+IncidentList.propTypes = {}
+
+export { IncidentList }
