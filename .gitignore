@@ -60,7 +60,7 @@ public
 
 # Mac files
 .DS_Store
-
+.history
 # Yarn
 yarn-error.log
 .pnp/
