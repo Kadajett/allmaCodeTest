@@ -21,15 +21,32 @@ import Paper from "@material-ui/core/Paper"
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
-    maxWidth: 0,
+    fontSize: "14px",
+    '& th': {
+      '&:first-child': {
+        paddingLeft: "15px",
+      },
+      '&:last-child': {
+        paddingRight: '15px',
+      }
+    },
+    '& td': {
+      '&:last-child': {
+        paddingRight: '15px',
+      }
+    }
   },
 })
 function IncidentList({ incidents }) {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
-    <TableContainer component={Paper}>
-      <Table stickyHeader className={classes.table} aria-label="simple table">
+    <TableContainer width={1} component={Paper}>
+      <Table
+        width={1}
+        stickyHeader
+        className={classes.table}
+        aria-label="simple table"
+      >
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
