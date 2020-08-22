@@ -22,6 +22,9 @@ import Paper from "@material-ui/core/Paper"
 import { secondsToDhms } from "../utils/time"
 import moment from "moment"
 import { SlackButton } from "./slackButton"
+import CheckIcon from "@material-ui/icons/Check"
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline"
+import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,6 +58,10 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     paddingLeft: "10px",
+  },
+  greenChip: {
+    color: "green",
+    border: "1px solid green"
   },
 }))
 
@@ -109,6 +116,25 @@ const createRowData = ({
 const Incident = ({ incidentData }) => {
   const classes = useStyles()
 
+  const getStatusChip = statusId => {
+    return statusId === "RESOLVED" ? (
+      <Chip
+        icon={<CheckIcon />}
+        label="Resolved"
+        color="primary"
+        className={classes.greenChip}
+        variant="outlined"
+      />
+    ) : (
+      <Chip
+        icon={<ErrorOutlineIcon />}
+        label="Declared"
+        color="secondary"
+        variant="outlined"
+      />
+    )
+  }
+
   const rowData = createRowData(incidentData)
   return (
     <TableRow key={rowData.name}>
@@ -118,7 +144,7 @@ const Incident = ({ incidentData }) => {
       <TableCell align="right">{rowData.severity?.name || "N/A"}</TableCell>
       <TableCell align="right">{rowData.primaryParticipant}</TableCell>
       <TableCell align="right">{rowData.participants}</TableCell>
-      <TableCell align="right">{rowData.incidentStatusId}</TableCell>
+      <TableCell align="right">{getStatusChip(rowData.incidentStatusId)}</TableCell>
       <TableCell align="right">{rowData.duration}</TableCell>
       <TableCell align="right">{rowData.createdOn}</TableCell>
       <TableCell align="right">{rowData.chatChannel}</TableCell>
@@ -129,33 +155,3 @@ const Incident = ({ incidentData }) => {
 Incident.propTypes = {}
 
 export { Incident }
-
-// <div className={classes.issueContainer}>
-// {primaryParticipant && (
-//   <div className={[classes.primaryAvatarContainer]}>
-//     <Avatar
-//       className={classes.avatar}
-//       alt={primaryParticipant?.user?.realName}
-//       src={primaryParticipant?.user?.avatarUrl}
-//     />
-//     Commander {}
-//   </div>
-// )}
-// <div className={bodyClass}>
-//   <div className={classes.topHalf}>
-//     <h3>{incidentData.name}</h3>
-//     <Divider component="span" />
-//   </div>
-//   <div className={classes.bottomHalf}>
-//     <Tooltip
-//       title={incidentData.severity?.description}
-//       aria-label={incidentData.severity?.description}
-//       placement="top"
-//     >
-//       <Typography>{incidentData.severity?.name}</Typography>
-//     </Tooltip>
-
-//     <div>{incidentData.severity?.statusId}</div>
-//   </div>
-// </div>
-// </div>
