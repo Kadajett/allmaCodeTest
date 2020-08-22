@@ -135,7 +135,7 @@
       "name": "Incident with private room",
       "incidentStatusId": "RESOLVED",
       "impact": null,
-      "summary": null,
+      "summary": "test summary",
       "duration": 9725,
       "resolution": null,
       "channelId": "G017DQCKZT5",
